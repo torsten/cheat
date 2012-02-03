@@ -52,6 +52,7 @@ end
 
 search = ARGV.shift
 if search
+  search = search.downcase
   tips.each do |header, body|
     h = header.downcase
     b = body.downcase
