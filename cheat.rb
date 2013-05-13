@@ -243,4 +243,12 @@ Change date of previous commit:
   export GIT_COMMITTER_DATE="Fri Apr 26 19:40:11 2013 -0600"
   git commit --amend --date="Fri Apr 26 19:40:11 2013 -0600"
 
+Add a new root branch (or "orphaned" branch):
+
+  # http://stackoverflow.com/a/9538427/278705
+  cd /path/to/repo
+  git symbolic-ref HEAD refs/heads/gh-pages
+  rm .git/index
+  git clean -fdx
+
 
