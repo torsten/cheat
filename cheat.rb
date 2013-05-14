@@ -107,4 +107,4 @@ Generating the raw data for a git impact chart ala GitHub:
 
 Remove *.pyc files:
 
-  find . -iname '*.pyc' | xargs -n1 rm
+  rm **/*.pyc
