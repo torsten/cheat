@@ -22,7 +22,7 @@
 # Highlight matches with a underlined yellow
 HIGHLIGHT = "\033[0;2;4;33m"
 
-def print_tip header, body, search_term=nil
+def print_cheat header, body, search_term=nil
   if search_term
     regex = /#{Regexp::escape(search_term)}/i
     header.gsub! regex do |match|
@@ -53,15 +53,30 @@ end
 search = ARGV.shift
 if search
   search = search.downcase
-  tips.each do |header, body|
-    h = header.downcase
-    b = body.downcase
-    if h.include? search or b.include? search
-      print_tip header, body, search
+  matching = tips.find_all do |header, body|
+    header.downcase.include? search or body.downcase.include? search
+  end
+
+  # If cheat is running in a subshell: try to print just
+  # the body of that cheat so that it can be used inside backticks.
+  inside_backticks = (ENV["SHLVL"] == "0")
+
+  if inside_backticks
+    if matching.length == 1
+      cheat = matching.first[1].strip
+      STDERR.puts "Running `#{cheat}`"
+      STDOUT.puts cheat
+    else
+      puts "echo Found #{matching.length} cheats matching '#{search}'"
+      exit 1
+    end
+  else
+    matching.each do |header, body|
+      print_cheat header, body, search
     end
   end
 else
-  tips.each(&method(:print_tip))
+  tips.each(&method(:print_cheat))
 end
 
 # Add more cheats here:

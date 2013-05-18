@@ -31,6 +31,15 @@ If `SEARCHTERM` is given, `cheat` lists only cheats that contain this term.
 Otherwise it will list all cheats.
 
 
+### Executing Cheats
+
+    $ `cheat foo`
+
+If there is exactly one cheat matching cheat,
+cheat will print just the contents so that the backticks
+can execute the cheat.  Thanks @i0rek for suggesting this feature.
+
+
 ### Adding Cheats
 
 Adding new cheats is as simple as opening `cheat` and adding new entries at the
