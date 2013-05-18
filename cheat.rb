@@ -251,4 +251,13 @@ Add a new root branch (or "orphaned" branch):
   rm .git/index
   git clean -fdx
 
+Inside screen session, scroll up to see history
+
+  Hit C-a [
+  Then normal vim movements: hjkl and:
+  G -    Moves to the specified line (defaults to the end of the buffer).
+  C-u -  Scrolls a half page up.
+  C-b -  Scrolls a full page up.
+  C-d -  Scrolls a half page down.
+  C-f -  Scrolls the full page down.
 
