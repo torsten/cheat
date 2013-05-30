@@ -275,3 +275,22 @@ Inside screen session, scroll up to see history
   C-b -  Scrolls a full page up.
   C-d -  Scrolls a half page down.
   C-f -  Scrolls the full page down.
+
+RedShift: Show encodings/compressions per column
+
+  select * from pg_table_def where tablename like 'events%';
+
+RedShift: Show overall disk usage
+
+  select owner, diskno, used, capacity,
+    (used-tossed)/capacity::numeric *100 as pctused 
+    from stv_partitions order by owner;
+
+RedShift: Show blocks per table
+
+  select name, max(blocknum) from svv_diskusage group by name order by name;
+
+Postgres: Show space used by each table
+
+  select pg_size_pretty(pg_table_size('events')), pg_size_pretty(pg_total_relation_size('events'));
+
